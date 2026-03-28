@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kampanyalar & Üyelik — N2Life Spor</title>
+  <meta name="description"
+    content="N2Life Spor üyelik paketleri ve kampanyaları. Aylık, 3 aylık ve yıllık avantajlı seçenekler.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Kampanyalar page-specific */
+    .promo-banner {
+      background: var(--accent);
+      padding: 0.75rem var(--space-lg);
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent-text);
+      margin-top: 70px;
+    }
+
+    .promo-banner span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Navbar solid on this page to avoid green blur from promo bar */
+    .navbar {
+      background: rgba(19, 19, 19, 0.97) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    .pricing-section {
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+    }
+
+    .pricing-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .billing-toggle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .toggle-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    .toggle-label.active {
+      color: var(--primary);
+    }
+
+    .toggle-switch {
+      width: 52px;
+      height: 28px;
+      background: var(--surface-high);
+      border-radius: 14px;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch.yearly::after {
+      transform: translateX(24px);
+    }
+
+    .save-badge {
+      background: var(--accent);
+      color: var(--accent-text);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    .price-card {
+      background: var(--surface-container);
+      padding: var(--space-xl);
+      border-radius: var(--radius-sm);
+      position: relative;
+      border: 1px solid transparent;
+      transition: transform 0.25s, border-color 0.2s;
+    }
+
+    .price-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .price-card.featured {
+      background: var(--surface-high);
+      border-color: var(--accent);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--accent-text);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: var(--label-sm);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-sm);
+    }
+
+    .price-card.featured .plan-name {
+      color: var(--accent);
+    }
+
+    .price-amount {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-currency {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .price-value {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .price-period {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-bottom: 0.25rem;
+    }
+
+    .price-original {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      text-decoration: line-through;
+      margin-bottom: var(--space-md);
+    }
+
+    .price-desc {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-lg);
+      border-bottom: var(--border-ghost);
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+
+    .feature-check {
+      color: var(--accent);
+      font-weight: 900;
+      flex-shrink: 0;
+      width: 16px;
+    }
+
+    .feature-cross {
+      color: var(--surface-highest);
+      font-weight: 900;
+      flex-shrink: 0;
+      width: 16px;
+    }
+
+    .feature-item.inactive {
+      opacity: 0.4;
+    }
+
+    /* Campaigns */
+    .campaigns-section {
+      background: var(--surface-low);
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+    }
+
+    .campaigns-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .campaigns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .campaign-card {
+      background: var(--surface-container);
+      padding: var(--space-lg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      transition: background 0.2s, transform 0.25s;
+    }
+
+    .campaign-card:hover {
+      background: var(--surface-high);
+      transform: translateX(4px);
+    }
+
+    .campaign-icon {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+    }
+
+    .campaign-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .campaign-text {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .campaign-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 0 var(--space-lg) var(--space-2xl);
+    }
+
+    .faq-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: var(--border-ghost);
+      padding: var(--space-md) 0;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      gap: 1rem;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .faq-icon {
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-top: var(--space-sm);
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .campaigns-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
+    <a href="index.html" class="nav-logo">N2<span>LIFE</span> SPOR</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="galeri.html">Galeri</a></li>
+      <li><a href="kampanyalar.html">Kampanyalar</a></li>
+      <li><a href="hesaplayici.html">Hesaplayıcı</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+    </ul>
+
+    <button class="hamburger" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" role="navigation">
+    <a href="index.html">Anasayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="kampanyalar.html">Kampanyalar</a>
+    <a href="hesaplayici.html">Hesaplayıcı</a>
+    <a href="iletisim.html">İletişim</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-label">Üyelik Paketleri</div>
+      <h1 class="page-hero-title reveal">KAMPANYALAR</h1>
+      <p class="section-desc mt-md reveal delay-1">Sana en uygun paketi seç, hedeflerine doğru ilerle.</p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <section class="pricing-section" aria-labelledby="pricing-title">
+    <div class="pricing-inner">
+
+      <div class="pricing-grid">
+        <!-- Günlük -->
+        <article class="price-card reveal" id="plan-gunluk">
+          <div class="plan-name">Günlük</div>
+          <div class="price-amount">
+            <span class="price-currency">₺</span>
+            <span class="price-value">250</span>
+            <span class="price-period">/gün</span>
+          </div>
+          <p class="price-desc">Tek günlük erişim. Tüm alanları keşfet, hiç yük olmadan spor yap.</p>
+          <ul class="feature-list">
+            <li class="feature-item"><span class="feature-check">—</span> 1 günlük tam erişim</li>
+            <li class="feature-item"><span class="feature-check">—</span> Kardio ekipmanları</li>
+            <li class="feature-item"><span class="feature-check">—</span> Ağırlık &amp; güç alanı</li>
+            <li class="feature-item"><span class="feature-check">—</span> Soyunma odası &amp; duş</li>
+
+          </ul>
+          <a href="iletisim.html" class="btn btn-secondary" style="width:100%;justify-content:center;"
+            id="gunluk-cta">Bilgi Al</a>
+        </article>
+
+        <!-- Aylık (Featured) -->
+        <article class="price-card featured reveal delay-2" id="plan-aylik">
+          <span class="popular-tag">⚡ En Popüler</span>
+          <div class="plan-name">Aylık</div>
+          <div class="price-amount">
+            <span class="price-currency">₺</span>
+            <span class="price-value">2.250</span>
+            <span class="price-period">/ay</span>
+          </div>
+          <p class="price-desc">30 günlük sınırsız erişim. Hedeflerine odaklan, biz geri kalanını halledelim.</p>
+          <ul class="feature-list">
+            <li class="feature-item"><span class="feature-check">—</span> 30 günlük tam erişim</li>
+            <li class="feature-item"><span class="feature-check">—</span> Tüm kardio &amp; ağırlık alanı</li>
+            <li class="feature-item"><span class="feature-check">—</span> Aylık 2 PT seansı</li>
+            <li class="feature-item"><span class="feature-check">—</span> Soyunma odası &amp; duş</li>
+            <li class="feature-item"><span class="feature-check">—</span> Beslenme danışmanlığı</li>
+          </ul>
+          <a href="iletisim.html" class="btn btn-primary" style="width:100%;justify-content:center;"
+            id="aylik-cta">Bilgi Al</a>
+        </article>
+
+        <!-- 3 Aylık -->
+        <article class="price-card reveal delay-4" id="plan-3aylik">
+          <div class="plan-name">3 Aylık</div>
+          <div class="price-amount">
+            <span class="price-currency">₺</span>
+            <span class="price-value">5.700</span>
+            <span class="price-period">/3 ay</span>
+          </div>
+          <p class="price-desc">90 günlük tam kapsamlı paket. Maksimum performans, maksimum ayrıcalık.</p>
+          <ul class="feature-list">
+            <li class="feature-item"><span class="feature-check">—</span> Tüm aylık özellikler</li>
+            <li class="feature-item"><span class="feature-check">—</span> Aylık 4 PT seansı</li>
+            <li class="feature-item"><span class="feature-check">—</span> Haftalık beslenme takibi</li>
+            <li class="feature-item"><span class="feature-check">—</span> Soyunma odası &amp; duş</li>
+            <li class="feature-item"><span class="feature-check">—</span> Öncelikli ders rezervasyonu</li>
+            <li class="feature-item"><span class="feature-check">—</span> Özel eğitim programı</li>
+          </ul>
+          <a href="iletisim.html" class="btn btn-secondary" style="width:100%;justify-content:center;"
+            id="ucaylik-cta">Bilgi Al</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FAQ -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="faq-inner">
+      <div class="section-label" style="text-align:center;">Sıkça Sorulan</div>
+      <h2 class="section-title reveal" id="faq-title" style="text-align:center;">Sorular</h2>
+      <div style="display:flex;justify-content:center;margin-bottom:var(--space-xl);"><span class="accent-line"
+          style="margin:0 auto;"></span></div>
+
+      <div class="faq-item" id="faq-1">
+        <button class="faq-question" aria-expanded="false">
+          Üyeliği ne zaman iptal edebilirim?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">İstediğiniz zaman, herhangi bir ceza olmaksızın iptal edebilirsiniz. Aylık üyelikte bir
+          sonraki dönem başlamadan 3 gün önce bildirim yeterlidir.</div>
+      </div>
+      <div class="faq-item" id="faq-2">
+        <button class="faq-question" aria-expanded="false">
+          Deneme süresi nasıl çalışır?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">7 günlük ücretsiz deneme süresinde tüm salon alanlarına ve grup derslerine
+          katılabilirsiniz. Kredi kartı bilgisi gerekmez; deneme sonunda dilediğinizi seçin.</div>
+      </div>
+      <div class="faq-item" id="faq-3">
+        <button class="faq-question" aria-expanded="false">
+          Üyeliği başkasına devredebilir miyim?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">Evet, üyelik devri belirli koşullar altında mümkündür. Detaylar için resepsiyon ile
+          iletişime geçin. Devir işlemi 200 ₺ yönetim ücretine tabidir.</div>
+      </div>
+      <div class="faq-item" id="faq-4">
+        <button class="faq-question" aria-expanded="false">
+          Grup dersleri rezervasyonu nasıl yapılır?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">N2Life mobil uygulamamız veya web sitesi üzerinden 3 gün öncesinden ders rezervasyonu
+          yapabilirsiniz. Elite üyeler öncelikli rezervasyon hakkına sahiptir.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" aria-label="Üyelik çağrısı"
+    style="padding: var(--space-xl) var(--space-lg); display: flex; justify-content: center; align-items: center; background: var(--surface-low);">
+    <div class="cta-banner-inner"
+      style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-lg);">
+      <div>
+        <h2 class="cta-banner-title" style="font-size: var(--headline-lg); font-weight: 900; margin-bottom: 0.5rem;">Bir
+          Adımını<br>Uzaktasın.</h2>
+        <p class="cta-banner-sub" style="color: var(--on-surface-variant);">Daha fazla bilgi için bizimle iletişime
+          geçin.</p>
+      </div>
+      <a href="iletisim.html" class="btn btn-secondary" id="pricing-cta-btn">Bilgi Al</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">N2<span>LIFE</span> SPOR</div>
+        <p class="footer-tagline">Kocaeli'nin en premium fitness deneyimi.</p>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Sayfalar</h3>
+        <nav class="footer-links">
+          <a href="index.html">Anasayfa</a>
+          <a href="galeri.html">Galeri</a>
+          <a href="kampanyalar.html">Kampanyalar</a>
+          <a href="hesaplayici.html">Hesaplayıcı</a>
+          <a href="iletisim.html">İletişim</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">İletişim</h3>
+        <nav class="footer-links">
+          <a href="tel:+902121234567">+90 212 123 45 67</a>
+          <a href="mailto:info@n2lifespor.com">info@n2lifespor.com</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 N2Life Spor. Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+        btn.setAttribute('aria-expanded', !isOpen);
+      });
+    });
+  </script>
+</body>
+
+</html>

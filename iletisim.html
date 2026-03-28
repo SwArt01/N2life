@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İletişim — N2Life Spor</title>
+  <meta name="description"
+    content="N2Life Spor ile iletişime geçin. Adres, telefon, çalışma saatleri ve iletişim formu.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-layout {
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+    }
+
+    .contact-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    /* Info side */
+    .info-block {
+      margin-bottom: var(--space-xl);
+    }
+
+    .info-block-label {
+      font-size: var(--label-sm);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .info-block-value {
+      font-size: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .info-block-value a {
+      color: var(--on-surface-variant);
+      transition: color 0.2s;
+    }
+
+    .info-block-value a:hover {
+      color: var(--accent);
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem var(--space-md);
+    }
+
+    .hours-day {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .hours-time {
+      font-size: 0.875rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .social-section-title {
+      font-size: var(--label-sm);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .social-card {
+      background: var(--surface-container);
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      transition: background 0.2s, transform 0.2s;
+      display: block;
+    }
+
+    .social-card:hover {
+      background: var(--surface-high);
+      transform: translateY(-3px);
+    }
+
+    .social-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .social-card-name {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    /* Form side */
+    .contact-form-wrap {
+      background: var(--surface-container);
+      padding: var(--space-xl);
+      border-radius: var(--radius-sm);
+    }
+
+    .form-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    /* Map embed */
+    .map-section {
+      background: var(--surface-low);
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .map-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .map-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      background: var(--surface-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(100%) invert(90%) contrast(90%);
+    }
+
+    .map-overlay-info {
+      position: absolute;
+      bottom: var(--space-md);
+      left: var(--space-md);
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-sm);
+      border: var(--border-ghost);
+    }
+
+    .map-address {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .map-phone {
+      font-size: var(--label-sm);
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Branch cards */
+    .branches-section {
+      padding: var(--space-xl) var(--space-lg);
+      background: var(--surface);
+    }
+
+    .branches-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .branches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .branch-card {
+      background: var(--surface-container);
+      padding: var(--space-lg);
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, transform 0.25s;
+      border-top: 3px solid transparent;
+    }
+
+    .branch-card:hover {
+      background: var(--surface-high);
+      transform: translateY(-4px);
+      border-top-color: var(--accent);
+    }
+
+    .branch-name {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .branch-detail {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .branch-detail span {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .branch-detail-icon {
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .branches-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
+    <a href="index.html" class="nav-logo">N2<span>LIFE</span> SPOR</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="galeri.html">Galeri</a></li>
+      <li><a href="kampanyalar.html">Kampanyalar</a></li>
+      <li><a href="hesaplayici.html">Hesaplayıcı</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+    </ul>
+
+    <button class="hamburger" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" role="navigation">
+    <a href="index.html">Anasayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="kampanyalar.html">Kampanyalar</a>
+    <a href="hesaplayici.html">Hesaplayıcı</a>
+    <a href="iletisim.html">İletişim</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-label">Bize Ulaşın</div>
+      <h1 class="page-hero-title reveal">İLETİŞİM</h1>
+      <p class="section-desc mt-md reveal delay-1">7/24 ulaşabilirsiniz. Cevap süresi: maks 2 saat.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT MAIN -->
+  <section class="contact-layout" aria-label="İletişim bilgileri ve form">
+    <div class="contact-inner">
+
+      <!-- Info -->
+      <div class="contact-info reveal-left">
+        <div class="info-block">
+          <div class="info-block-label">📍 Adres</div>
+          <div class="info-block-value">Yeşilova, Turan Güneş Cd. No:578<br>41060 İzmit/Kocaeli</div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-label">📞 Telefon</div>
+          <div class="info-block-value">
+            <a href="tel:+905054880570">+90 505 488 05 70</a>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-label">✉️ E-Posta</div>
+          <div class="info-block-value">
+            <a href="mailto:n2lifesporcenter@gmail.com">n2lifesporcenter@gmail.com</a>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-label">🕐 Çalışma Saatleri</div>
+          <div class="hours-grid">
+            <span class="hours-day">Pazartesi</span>
+            <span class="hours-time">09:30 – 23:00</span>
+            <span class="hours-day">Salı</span>
+            <span class="hours-time">09:30 – 23:00</span>
+            <span class="hours-day">Çarşamba</span>
+            <span class="hours-time">12:00 – 23:00</span>
+            <span class="hours-day">Perşembe</span>
+            <span class="hours-time">09:30 – 23:00</span>
+            <span class="hours-day">Cuma</span>
+            <span class="hours-time">12:00 – 23:00</span>
+            <span class="hours-day">Cumartesi</span>
+            <span class="hours-time">09:30 – 23:00</span>
+            <span class="hours-day">Pazar</span>
+            <span class="hours-time">12:00 – 20:00</span>
+          </div>
+        </div>
+        <div>
+          <div class="social-section-title">Sosyal Medya</div>
+          <div class="social-grid">
+            <a href="#" class="social-card" aria-label="Instagram">
+              <div class="social-card-icon">📸</div>
+              <div class="social-card-name">Instagram</div>
+            </a>
+            <a href="#" class="social-card" aria-label="Facebook">
+              <div class="social-card-icon">👥</div>
+              <div class="social-card-name">Facebook</div>
+            </a>
+            <a href="#" class="social-card" aria-label="YouTube">
+              <div class="social-card-icon">🎥</div>
+              <div class="social-card-name">YouTube</div>
+            </a>
+            <a href="#" class="social-card" aria-label="TikTok">
+              <div class="social-card-icon">🎵</div>
+              <div class="social-card-name">TikTok</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-wrap reveal">
+        <h2 class="form-title">Mesaj Gönder</h2>
+        <p class="form-subtitle">Sorularınız, üyelik talepleriniz veya geri bildirimleriniz için formu doldurun. En kısa
+          sürede yanıt veriyoruz.</p>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Ad Soyad</label>
+              <input class="form-input" type="text" id="contact-name" placeholder="Adınız" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-phone">Telefon</label>
+              <input class="form-input" type="tel" id="contact-phone" placeholder="+90 5xx xxx xx xx">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">E-Posta Adresi</label>
+            <input class="form-input" type="email" id="contact-email" placeholder="ornek@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-subject">Konu</label>
+            <select class="form-select" id="contact-subject">
+              <option value="">Konu Seçin</option>
+              <option>Üyelik Bilgisi</option>
+              <option>Kişisel Antrenman</option>
+              <option>Grup Dersleri</option>
+              <option>Kampanyalar & Fiyatlar</option>
+              <option>Şikayet & Öneri</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Mesajınız</label>
+            <textarea class="form-textarea" id="contact-message" rows="5" placeholder="Mesajınızı buraya yazın..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="contact-submit-btn"
+            style="width:100%;justify-content:center;">MESAJ GÖNDER</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section" aria-label="Konum haritası">
+    <div class="map-inner">
+      <div class="map-header reveal">
+        <div class="section-label">Konum</div>
+        <h2 class="section-title">Bizi Bulun</h2>
+        <span class="accent-line"></span>
+      </div>
+      <div class="map-frame reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=Yeşilova,+Turan+Güneş+Cd.+No:578,+41060+İzmit/Kocaeli&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="N2Life Spor Salonu konumu haritası">
+        </iframe>
+        <div class="map-overlay-info">
+          <div class="map-address">Yeşilova, Turan Güneş Cd.<br>No:578, İzmit/Kocaeli</div>
+          <div class="map-phone">+90 212 123 45 67</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">N2<span>LIFE</span> SPOR</div>
+        <p class="footer-tagline">Kocaeli'nin en premium fitness deneyimi. Güçlü olmak bir seçim, harekete geçmek ise
+          bir kararlılık.</p>
+        <div class="social-links" aria-label="Sosyal medya linkleri">
+          <a href="#" class="social-link" aria-label="Instagram">IG</a>
+          <a href="#" class="social-link" aria-label="Facebook">FB</a>
+          <a href="#" class="social-link" aria-label="YouTube">YT</a>
+          <a href="#" class="social-link" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Sayfalar</h3>
+        <nav class="footer-links">
+          <a href="index.html">Anasayfa</a>
+          <a href="galeri.html">Galeri</a>
+          <a href="kampanyalar.html">Kampanyalar</a>
+          <a href="hesaplayici.html">Hesaplayıcı</a>
+          <a href="iletisim.html">İletişim</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Hizmetler</h3>
+        <nav class="footer-links">
+          <a href="#">Kişisel Antrenman</a>
+          <a href="#">Grup Dersleri</a>
+          <a href="#">Beslenme Danışmanlığı</a>
+          <a href="#">Kurumsal Üyelik</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">İletişim</h3>
+        <nav class="footer-links">
+          <a href="tel:+902121234567">+90 212 123 45 67</a>
+          <a href="mailto:info@n2lifespor.com">info@n2lifespor.com</a>
+          <a href="#">Yeşilova, Turan Güneş Cd.<br>No:578, 41060 İzmit/Kocaeli</a>
+          <a href="#">Pzt-Cum: 06:00 – 24:00</a>
+          <a href="#">Hft Sonu: 08:00 – 22:00</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 N2Life Spor. Tüm hakları saklıdır.</span>
+      <span>Tasarım: Kinetic Precision Design System</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>window.initContactForm();</script>
+</body>
+
+</html>
