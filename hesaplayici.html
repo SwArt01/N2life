@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,7 @@
     .calc-section {
       padding: var(--space-xl) var(--space-lg) var(--space-2xl);
     }
+
     .calc-inner {
       max-width: 1280px;
       margin: 0 auto;
@@ -18,11 +20,13 @@
       gap: var(--space-xl);
       align-items: start;
     }
+
     .calc-card {
       background: var(--surface-container);
       padding: var(--space-xl);
       border-radius: var(--radius-sm);
     }
+
     .calc-title {
       font-size: 1.4rem;
       font-weight: 900;
@@ -30,6 +34,7 @@
       color: var(--primary);
       margin-bottom: 0.4rem;
     }
+
     .calc-subtitle {
       font-size: 0.875rem;
       color: var(--on-surface-variant);
@@ -45,6 +50,7 @@
       background: linear-gradient(to right, #5BC0EB 0%, #CCFF00 35%, #FFB347 65%, #FF6B6B 100%);
       margin: var(--space-lg) 0 var(--space-sm);
     }
+
     .bmi-needle {
       position: absolute;
       top: -4px;
@@ -53,9 +59,10 @@
       height: 20px;
       background: var(--primary);
       border-radius: 2px;
-      transition: left 0.6s cubic-bezier(.22,.68,0,1.2);
+      transition: left 0.6s cubic-bezier(.22, .68, 0, 1.2);
       transform: translateX(-50%);
     }
+
     .bmi-gauge-labels {
       display: flex;
       justify-content: space-between;
@@ -76,6 +83,7 @@
       margin-top: var(--space-lg);
       border-left: 3px solid var(--accent);
     }
+
     .result-number {
       font-size: 4rem;
       font-weight: 900;
@@ -83,6 +91,7 @@
       line-height: 1;
       color: var(--accent);
     }
+
     .result-label {
       font-size: var(--label-sm);
       font-weight: 700;
@@ -91,6 +100,7 @@
       color: var(--on-surface-variant);
       margin-top: 0.25rem;
     }
+
     .result-category {
       font-size: 1rem;
       font-weight: 700;
@@ -102,12 +112,14 @@
       display: none;
       margin-top: var(--space-lg);
     }
+
     .tdee-main {
       display: flex;
       align-items: flex-end;
       gap: 0.5rem;
       margin-bottom: var(--space-lg);
     }
+
     .tdee-cal {
       font-size: 4.5rem;
       font-weight: 900;
@@ -115,27 +127,32 @@
       line-height: 1;
       color: var(--accent);
     }
+
     .tdee-unit {
       font-size: 1rem;
       color: var(--on-surface-variant);
       margin-bottom: 0.75rem;
     }
+
     .macro-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-sm);
     }
+
     .macro-item {
       background: var(--surface-container);
       padding: var(--space-sm) var(--space-md);
       border-radius: var(--radius-sm);
     }
+
     .macro-val {
       font-size: 1.5rem;
       font-weight: 900;
       letter-spacing: -0.03em;
       color: var(--primary);
     }
+
     .macro-name {
       font-size: var(--label-sm);
       font-weight: 700;
@@ -143,27 +160,39 @@
       text-transform: uppercase;
       color: var(--on-surface-variant);
     }
+
     .macro-bar-wrap {
       height: 4px;
       background: var(--surface-highest);
       border-radius: 2px;
       margin-top: 0.5rem;
     }
+
     .macro-bar {
       height: 4px;
       border-radius: 2px;
       width: 0;
       transition: width 0.8s ease;
     }
-    #bar-protein { background: #CCFF00; }
-    #bar-carbs   { background: #5BC0EB; }
-    #bar-fat     { background: #FFB347; }
+
+    #bar-protein {
+      background: #CCFF00;
+    }
+
+    #bar-carbs {
+      background: #5BC0EB;
+    }
+
+    #bar-fat {
+      background: #FFB347;
+    }
 
     /* Info cards */
     .info-cards {
       padding: var(--space-xl) var(--space-lg);
       background: var(--surface-low);
     }
+
     .info-cards-inner {
       max-width: 1280px;
       margin: 0 auto;
@@ -171,6 +200,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: var(--space-md);
     }
+
     .info-card {
       background: var(--surface-container);
       padding: var(--space-lg);
@@ -178,14 +208,17 @@
       text-align: left;
       transition: background 0.2s, transform 0.25s;
     }
+
     .info-card:hover {
       background: var(--surface-high);
       transform: translateY(-4px);
     }
+
     .info-card-icon {
       font-size: 1.75rem;
       margin-bottom: var(--space-sm);
     }
+
     .info-card-range {
       font-size: 1.5rem;
       font-weight: 900;
@@ -193,6 +226,7 @@
       color: var(--primary);
       margin-bottom: 0.25rem;
     }
+
     .info-card-name {
       font-size: var(--label-sm);
       font-weight: 800;
@@ -200,6 +234,7 @@
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
+
     .info-card-desc {
       font-size: 0.8rem;
       color: var(--on-surface-variant);
@@ -212,17 +247,20 @@
       gap: var(--space-sm);
       margin-bottom: var(--space-lg);
     }
+
     .radio-option {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
     }
+
     .radio-option input {
       accent-color: var(--accent);
       width: 18px;
       height: 18px;
     }
+
     .radio-option span {
       font-size: 0.875rem;
       color: var(--on-surface-variant);
@@ -230,20 +268,33 @@
     }
 
     @media (max-width: 900px) {
-      .calc-inner { grid-template-columns: 1fr; }
-      .info-cards-inner { grid-template-columns: repeat(2, 1fr); }
-      .macro-grid { grid-template-columns: 1fr; }
+      .calc-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .info-cards-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .macro-grid {
+        grid-template-columns: 1fr;
+      }
     }
+
     @media (max-width: 480px) {
-      .info-cards-inner { grid-template-columns: 1fr; }
+      .info-cards-inner {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
-    <a href="index.html" class="nav-logo"><img src="img/N-Photoroom.png" alt="N2 Life Spor" style="height: 136px; filter: invert(1) brightness(2);"></a>
+    <a href="index.html" class="nav-logo"><img src="img/N-Photoroom.png" alt="N2 Life Spor"
+        style="height: 136px; filter: invert(1) brightness(2);"></a>
     <ul class="nav-links" role="list">
       <li><a href="index.html">Anasayfa</a></li>
       <li><a href="galeri.html">Galeri</a></li>
@@ -278,7 +329,8 @@
       <div class="calc-card reveal" id="bmi-calc-card">
         <div class="section-label">Araç 01</div>
         <h2 class="calc-title">BMI Hesaplayıcı</h2>
-        <p class="calc-subtitle">Boyunuzu ve kilonuzu girerek Vücut Kitle İndeksinizi (BMI) hesaplayın ve hangi kategoride olduğunuzu öğrenin.</p>
+        <p class="calc-subtitle">Boyunuzu ve kilonuzu girerek Vücut Kitle İndeksinizi (BMI) hesaplayın ve hangi
+          kategoride olduğunuzu öğrenin.</p>
 
         <form id="bmi-form" novalidate>
           <div class="form-group">
@@ -289,7 +341,8 @@
             <label class="form-label" for="bmi-weight">Kilo (kg)</label>
             <input class="form-input" type="number" id="bmi-weight" min="30" max="300" placeholder="Örn: 75" required>
           </div>
-          <button type="submit" class="btn btn-primary" id="bmi-submit-btn" style="width:100%;justify-content:center;">BMI Hesapla</button>
+          <button type="submit" class="btn btn-primary" id="bmi-submit-btn"
+            style="width:100%;justify-content:center;">BMI Hesapla</button>
         </form>
 
         <div class="result-box" id="bmi-result">
@@ -312,7 +365,8 @@
       <div class="calc-card reveal delay-2" id="tdee-calc-card">
         <div class="section-label">Araç 02</div>
         <h2 class="calc-title">Kalori İhtiyacı (TDEE)</h2>
-        <p class="calc-subtitle">Mifflin-St Jeor formülüyle günlük kalori ihtiyacınızı ve makro besin değerlerinizi hesaplayın.</p>
+        <p class="calc-subtitle">Mifflin-St Jeor formülüyle günlük kalori ihtiyacınızı ve makro besin değerlerinizi
+          hesaplayın.</p>
 
         <form id="tdee-form" novalidate>
           <div class="radio-group" role="group" aria-label="Cinsiyet seçimi">
@@ -331,7 +385,8 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="tdee-height">Boy (cm)</label>
-            <input class="form-input" type="number" id="tdee-height" min="100" max="250" placeholder="Örn: 175" required>
+            <input class="form-input" type="number" id="tdee-height" min="100" max="250" placeholder="Örn: 175"
+              required>
           </div>
           <div class="form-group">
             <label class="form-label" for="tdee-weight">Kilo (kg)</label>
@@ -347,7 +402,8 @@
               <option value="1.9">Ekstra Aktif (günde 2x antrenman veya fiziksel iş)</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary" id="tdee-submit-btn" style="width:100%;justify-content:center;">Kalori Hesapla</button>
+          <button type="submit" class="btn btn-primary" id="tdee-submit-btn"
+            style="width:100%;justify-content:center;">Kalori Hesapla</button>
         </form>
 
         <div class="tdee-result" id="tdee-result">
@@ -360,17 +416,23 @@
             <div class="macro-item">
               <div class="macro-val" id="tdee-protein">—</div>
               <div class="macro-name">Protein</div>
-              <div class="macro-bar-wrap"><div class="macro-bar" id="bar-protein"></div></div>
+              <div class="macro-bar-wrap">
+                <div class="macro-bar" id="bar-protein"></div>
+              </div>
             </div>
             <div class="macro-item">
               <div class="macro-val" id="tdee-carbs">—</div>
               <div class="macro-name">Karbonhidrat</div>
-              <div class="macro-bar-wrap"><div class="macro-bar" id="bar-carbs"></div></div>
+              <div class="macro-bar-wrap">
+                <div class="macro-bar" id="bar-carbs"></div>
+              </div>
             </div>
             <div class="macro-item">
               <div class="macro-val" id="tdee-fat">—</div>
               <div class="macro-name">Yağ</div>
-              <div class="macro-bar-wrap"><div class="macro-bar" id="bar-fat"></div></div>
+              <div class="macro-bar-wrap">
+                <div class="macro-bar" id="bar-fat"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -380,7 +442,8 @@
       <div class="calc-card reveal" id="fat-calc-card">
         <div class="section-label">Araç 03</div>
         <h2 class="calc-title">Vücut Yağ Oranı</h2>
-        <p class="calc-subtitle">Amerika Donanması (U.S. Navy) formülüyle tahmini vücut yağ oranınızı ve yağsız vücut kütlenizi (LBM) öğrenin.</p>
+        <p class="calc-subtitle">Amerika Donanması (U.S. Navy) formülüyle tahmini vücut yağ oranınızı ve yağsız vücut
+          kütlenizi (LBM) öğrenin.</p>
 
         <form id="fat-form" novalidate>
           <div class="radio-group" role="group" aria-label="Cinsiyet seçimi">
@@ -413,7 +476,8 @@
             <label class="form-label" for="fat-hip">Kalça Çevresi (cm)</label>
             <input class="form-input" type="number" id="fat-hip" min="40" max="250" placeholder="Örn: 100">
           </div>
-          <button type="submit" class="btn btn-primary" id="fat-submit-btn" style="width:100%;justify-content:center;">Yağ Oranı Hesapla</button>
+          <button type="submit" class="btn btn-primary" id="fat-submit-btn"
+            style="width:100%;justify-content:center;">Yağ Oranı Hesapla</button>
         </form>
 
         <div class="result-box" id="fat-result">
@@ -431,7 +495,8 @@
       <div class="calc-card reveal delay-2" id="onerm-calc-card">
         <div class="section-label">Araç 04</div>
         <h2 class="calc-title">1RM & Maks. Güç</h2>
-        <p class="calc-subtitle">Kullandığınız ağırlık ve tekrara göre 1 Tekrar Maksimum (1RM) değerinizi hesaplayın (Epley formülü).</p>
+        <p class="calc-subtitle">Kullandığınız ağırlık ve tekrara göre 1 Tekrar Maksimum (1RM) değerinizi hesaplayın
+          (Epley formülü).</p>
 
         <form id="onerm-form" novalidate>
           <div class="form-group">
@@ -442,16 +507,19 @@
             <label class="form-label" for="onerm-reps">Tekrar Sayısı</label>
             <input class="form-input" type="number" id="onerm-reps" min="1" max="30" placeholder="Örn: 5" required>
           </div>
-          <button type="submit" class="btn btn-primary" id="onerm-submit-btn" style="width:100%;justify-content:center;">1RM Hesapla</button>
+          <button type="submit" class="btn btn-primary" id="onerm-submit-btn"
+            style="width:100%;justify-content:center;">1RM Hesapla</button>
         </form>
 
         <div class="result-box" id="onerm-result">
-          <div class="result-number"><span id="onerm-value">—</span> <span style="font-size: 1.5rem; color: var(--on-surface-variant);">kg</span></div>
+          <div class="result-number"><span id="onerm-value">—</span> <span
+              style="font-size: 1.5rem; color: var(--on-surface-variant);">kg</span></div>
           <div class="result-label">1 Tekrar Maksimum (1RM)</div>
-          
+
           <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--outline-variant);">
             <div class="result-label" style="margin-bottom: 0.5rem;">Antrenman Yüzdeleri</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.85rem; color: var(--on-surface-variant);">
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.85rem; color: var(--on-surface-variant);">
               <div>%95 (~2 Tk): <span id="onerm-95" style="color: var(--primary); font-weight: 700;">—</span></div>
               <div>%90 (~4 Tk): <span id="onerm-90" style="color: var(--primary); font-weight: 700;">—</span></div>
               <div>%85 (~6 Tk): <span id="onerm-85" style="color: var(--primary); font-weight: 700;">—</span></div>
@@ -479,7 +547,8 @@
         <div class="info-card-icon">🟢</div>
         <div class="info-card-range" style="color:var(--accent);">18.5 – 24.9</div>
         <div class="info-card-name" style="color:var(--accent);">Normal</div>
-        <p class="info-card-desc">İdeal vücut kitle indeksi. Bu aralığı korumak için dengeli beslenme ve düzenli egzersiz yeterli.</p>
+        <p class="info-card-desc">İdeal vücut kitle indeksi. Bu aralığı korumak için dengeli beslenme ve düzenli
+          egzersiz yeterli.</p>
       </div>
       <div class="info-card reveal delay-2">
         <div class="info-card-icon">🟡</div>
@@ -497,11 +566,15 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-banner" aria-label="Kişisel program çağrısı" style="padding: var(--space-xl) var(--space-lg); display: flex; justify-content: center; align-items: center; background: var(--surface-low);">
-    <div class="cta-banner-inner" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-lg);">
+  <section class="cta-banner" aria-label="Kişisel program çağrısı"
+    style="padding: var(--space-xl) var(--space-lg); display: flex; justify-content: center; align-items: center; background: var(--surface-low);">
+    <div class="cta-banner-inner"
+      style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-lg);">
       <div>
-        <h2 class="cta-banner-title" style="font-size: var(--headline-lg); font-weight: 900; margin-bottom: 0.5rem;">Sayıları Bil,<br>Planını Yap.</h2>
-        <p class="cta-banner-sub" style="color: var(--on-surface-variant);">Uzman eğitmenlerimizle kişisel program oluştur.</p>
+        <h2 class="cta-banner-title" style="font-size: var(--headline-lg); font-weight: 900; margin-bottom: 0.5rem;">
+          Sayıları Bil,<br>Planını Yap.</h2>
+        <p class="cta-banner-sub" style="color: var(--on-surface-variant);">Uzman eğitmenlerimizle kişisel program
+          oluştur.</p>
       </div>
     </div>
   </section>
@@ -510,7 +583,10 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="footer-logo">N2<span>LIFE</span> SPOR</div>
+        <div class="footer-logo">
+          <img src="img/N-Photoroom.png" alt="N2 Life Spor"
+            style="height: 136px; filter: invert(1) brightness(2); margin-top: -30px; margin-bottom: -10px; margin-left: -15px;">
+        </div>
         <p class="footer-tagline">Kocaeli'nin en premium fitness deneyimi.</p>
       </div>
       <div>
@@ -526,8 +602,8 @@
       <div>
         <h3 class="footer-col-title">İletişim</h3>
         <nav class="footer-links">
-          <a href="tel:+902121234567">+90 212 123 45 67</a>
-          <a href="mailto:info@n2lifespor.com">info@n2lifespor.com</a>
+          <a href="tel:+90 505 488 05 70">+90 505 488 05 70</a>
+          <a href="mailto:n2lifesporcenter@gmail.com">n2lifesporcenter@gmail.com</a>
         </nav>
       </div>
     </div>
@@ -538,10 +614,11 @@
 
   <script src="js/main.js"></script>
   <script>
-    if(window.initBMICalculator) window.initBMICalculator();
-    if(window.initTDEECalculator) window.initTDEECalculator();
-    if(window.initFatCalculator) window.initFatCalculator();
-    if(window.initOneRMCalculator) window.initOneRMCalculator();
+    if (window.initBMICalculator) window.initBMICalculator();
+    if (window.initTDEECalculator) window.initTDEECalculator();
+    if (window.initFatCalculator) window.initFatCalculator();
+    if (window.initOneRMCalculator) window.initOneRMCalculator();
   </script>
 </body>
+
 </html>
