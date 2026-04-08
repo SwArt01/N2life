@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.n2lifesporcenter.com/sitemap.xml
